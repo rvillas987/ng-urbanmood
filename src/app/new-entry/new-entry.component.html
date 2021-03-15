@@ -1,0 +1,178 @@
+<div style="width: 1200px;">
+    <p-messages severity="info">
+        <ng-template pTemplate>
+            <img src="https://bluekite.lk/img/user/def_user.png" width="32" />
+            <div class="p-ml-2">CN: {{ custNo }} {{ type }}</div>
+        </ng-template>
+    </p-messages>
+    <fieldset>
+        <legend style="font-size: small;">Customer</legend>
+        <form [formGroup]="detailsFormGroup">
+            <div class="p-grid">
+                <div class="p-col-4 p-inputtext-sm">
+                    <input id="customername" type="text" placeholder="Name" formControlName="name" autocomplete="off"
+                        pInputText style="width: 100%;">
+                </div>
+                <div class="p-col-2 p-inputtext-sm">
+                    <input id="nickname" type="text" placeholder="Nickname" formControlName="nickname" autocomplete="off"
+                        pInputText style="width: 100%;">
+                </div>
+                <div class="p-col-2 p-inputtext-sm">
+                    <input id="mobileno" type="text" placeholder="Mobile No." formControlName="mobile" autocomplete="off"
+                        pInputText style="width: 100%;">
+                </div>
+            </div>
+        </form>
+    </fieldset>
+    <fieldset>
+        <legend style="font-size: small;">Items</legend>
+        <form [formGroup]="itemsFormGroup">
+            <div class="p-grid">
+                <div class="p-col-1 p-inputtext-sm">
+                    <input id="date" type="text" placeholder="Order Date" formControlName="date" autocomplete="off"
+                        pInputText style="width: 100%;">
+                </div>
+                <div class="p-col-4 p-inputtext-sm">
+                    <input id="item" type="text" placeholder="Item" formControlName="item" autocomplete="off" pInputText
+                        style="width: 100%;">
+                </div>
+                <div class="p-col-3 p-inputtext-sm">
+                    <input id="specs" type="text" placeholder="Specs (Size/Color)" formControlName="specs"
+                        autocomplete="off" pInputText style="width: 100%;">
+                </div>
+                <div class="p-col-4 p-inputtext-sm">
+                    <input id="address" type="text" placeholder="Address" formControlName="address" autocomplete="off"
+                        pInputText style="width: 100%;">
+                </div>
+            </div>
+            <div class="p-grid">
+                <div class="p-col-1 p-inputtext-sm">
+                    <input id="quantity" type="text" placeholder="Quantity" formControlName="quantity"
+                        autocomplete="off" pInputText style="width: 100%;">
+                </div>
+                <div class="p-col-2 p-inputtext-sm">
+                    <input id="sell" type="text" placeholder="Sell" formControlName="sell" autocomplete="off"
+                        pInputText style="width: 100%;">
+                </div>
+                <div class="p-col-2 p-inputtext-sm">
+                    <input id="paid" type="text" placeholder="Paid" formControlName="paid" autocomplete="off"
+                        pInputText style="width: 100%;">
+                </div>
+                <div class="p-col-2 p-inputtext-sm">
+                    <input id="cost" type="text" placeholder="Cost" formControlName="cost" autocomplete="off"
+                        pInputText style="width: 100%;">
+                </div>
+                <div class="p-col-2 p-inputtext-sm">
+                    <span style="margin-bottom: 20px;width: 100%">
+                        <p-dropdown [options]="channels" [(ngModel)]="chModel" [ngModelOptions]="{standalone: true}"
+                            editable="true" placeholder="Channels" optionLabel="Channel"></p-dropdown>
+                    </span>
+                </div>
+            </div>
+            <div class="p-grid">
+                <div class="p-col-2 p-inputtext-sm">
+                    <input id="payout" type="text" placeholder="Payout" formControlName="payout" autocomplete="off"
+                        pInputText style="width: 100%;">
+                </div>
+                <div class="p-col-2 p-inputtext-sm">
+                    <input id="notes" type="text" placeholder="Notes" formControlName="notes" autocomplete="off"
+                        pInputText style="width: 100%;">
+                </div>
+                <div class="p-col-2 p-inputtext-sm">
+                    <input id="tracking" type="text" placeholder="Tracking" formControlName="tracking" autocomplete="off"
+                        pInputText style="width: 100%;">
+                </div>
+                <div class="p-col-1 p-inputtext-sm">
+                    <input id="status" type="text" placeholder="Status" formControlName="status" autocomplete="off"
+                        pInputText style="width: 100%;">
+                </div>
+                <div class="p-col-2 p-inputtext-sm">
+                    <input id="eta" type="text" placeholder="Estimated Time of Arrival" formControlName="eta" autocomplete="off"
+                        pInputText style="width: 100%;">
+                </div>
+                <div class="class p-col-1" style="margin-top: 0px;">
+                    <button type="button" pButton icon="pi pi-plus"
+                        (click)="addItem()"  class="p-button-rounded p-button-text"></button>
+                </div>
+            </div>
+            <div>
+                <div class="card">
+                    <p-table [value]="items" [scrollable]="true" scrollHeight="200px" [style]="{width:'1150px'}" styleClass="p-datatable-sm">
+                        <ng-template pTemplate="colgroup" let-columns>
+                            <colgroup>
+                                <col style="width:60px">
+                                <col style="width:300px">
+                                <col style="width:300px">
+                                <col style="width:300px">
+                                <col style="width:60px">
+                                <col style="width:60px">
+                                <col style="width:60px">
+                                <col style="width:60px">
+                                <col style="width:60px">
+                                <col style="width:60px">
+                                <col style="width:250px">
+                                <col style="width:250px">
+                                <col style="width:100px">
+                            </colgroup>
+                        </ng-template>
+                        <ng-template pTemplate="header">
+                            <tr>
+                                <th>Date</th>
+                                <th>Item</th>
+                                <th>Specs (Size/Color)</th>
+                                <th>Address</th>
+                                <th>Region</th>
+                                <th>Quantity</th>
+                                <th>Sell</th>
+                                <th>Paid</th>
+                                <th>Cost</th>
+                                <th>Channel</th>
+                                <th>Payout</th>
+                                <th>Notes</th>
+                                <th></th>
+                            </tr>
+                        </ng-template>
+                        <ng-template pTemplate="body" let-items>
+                            <tr>
+                                <td>{{items.OrderDate | date:'shortDate'}}</td>
+                                <td>{{items.Item}}</td>
+                                <td>{{items.Specs}}</td>
+                                <td>{{items.Address}}</td>
+                                <td>{{items.Region}}</td>
+                                <td>{{items.Quantity}}</td>
+                                <td>{{items.Sell | currency}}</td>
+                                <td>{{items.Paid | currency}}</td>
+                                <td>{{items.Cost | currency}}</td>
+                                <td>{{items.Channel}}</td>
+                                <td>{{items.Payout}}</td>
+                                <td>{{items.Notes}}</td>
+                                <td>
+                                    <button type="button" pButton label="" (click)="editItem(items)"
+                                        icon="pi pi-user-edit" class="p-button-rounded p-button-text"></button>
+                                    <button type="button" pButton label="" (click)="deleteItem(items)"
+                                        icon="pi pi-trash" class="p-button-rounded p-button-text"></button>
+                                </td>
+                            </tr>
+                        </ng-template>
+                    </p-table>
+                </div>
+            </div>
+        </form>
+    </fieldset>
+    <div class="class p-grid">
+        <div class="class p-col-2">
+        </div>
+        <div class="class p-col-2">
+        </div>
+        <div class="class p-col-2">
+        </div>
+        <div class="class p-col-2"> 
+        </div>
+        <div class="class p-col-3"> 
+        </div>
+        <div class="class p-col-1">
+            <button type="button" pButton label="Save" icon="pi pi-save" (click)="saveItems()"
+                style="width: 100%; margin-top: 10px;"></button>
+        </div>
+    </div>
+</div>

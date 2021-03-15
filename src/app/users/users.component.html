@@ -1,0 +1,44 @@
+<div *ngIf="xchangePass == false && xnewUser == false">
+    Logged in as {{ username }}
+    <br>
+    <button type="button" pButton label="Change Password" style="width: 300px; margin-top: 10px;"
+        (click)="changePass()"></button>
+    <br>
+    <button type="button" pButton label="Add new user" style="width: 300px; margin-top: 10px;"
+        (click)="newUser()"></button>
+    <br>
+    <button type="button" pButton label="Logout" style="width: 300px; margin-top: 10px;" (click)="logout()"></button>
+</div>
+
+<div *ngIf="xchangePass == true">
+    <input pInputText id="oldpass" type="password" placeholder="Old Password" [(ngModel)]="oldPass"
+        [ngModelOptions]="{standalone: true}" autocomplete="off" style="width: 300px; margin-top: 10px;" />
+    <small id="oldpass-help" class="p-invalid" *ngIf="xbadPass"> - Incorrect password.</small>
+    <br>
+    <input pInputText id="newpass" type="password" placeholder="New Password" [(ngModel)]="newPass"
+        [ngModelOptions]="{standalone: true}" autocomplete="off" style="width: 300px; margin-top: 10px;" />
+    <br>
+    <input pInputText id="confirmpass" type="password" placeholder="Confirm New Password" [(ngModel)]="confirmPass"
+        [ngModelOptions]="{standalone: true}" autocomplete="off" style="width: 300px; margin-top: 10px;" />
+    <small id="confirmpass-help" class="p-invalid" *ngIf="xnotMatch"> - Password did not match.</small>
+    <br>
+    <button pButton type="button" label="Submit" (click)="changePassSubmit()"
+        style="width: 300px; margin-top: 30px;"></button>
+    <br>
+    <button pButton type="button" label="Cancel" (click)="cancelChangePass()"
+        style="width: 300px; margin-top: 10px;"></button>
+</div>
+<div *ngIf="xnewUser == true">
+    <input pInputText id="userid" type="text" placeholder="User ID" [(ngModel)]="userId"
+        [ngModelOptions]="{standalone: true}" autocomplete="off" style="width: 300px; margin-top: 10px;" />
+    <br>
+    <input pInputText id="username" type="text" placeholder="User Name" [(ngModel)]="userName"
+        [ngModelOptions]="{standalone: true}" autocomplete="off" style="width: 300px; margin-top: 10px;" />
+    <br>
+    <input pInputText id="pass" type="password" placeholder="Password" [(ngModel)]="passWord"
+        [ngModelOptions]="{standalone: true}" autocomplete="off" style="width: 300px; margin-top: 10px;" />
+    <br>
+    <button pButton type="button" label="Add User" (click)="newUserSubmit()" style="width: 300px; margin-top: 10px;"></button>
+    <br>
+    <button pButton type="button" label="Cancel" (click)="cancelNewUser()" style="width: 300px; margin-top: 10px;"></button>
+</div>

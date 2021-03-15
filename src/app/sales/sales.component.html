@@ -1,0 +1,133 @@
+<div style="margin-bottom: 20px;">
+    <button type="button" pButton label="New Entry" style="width: 200px;" (click)="gotoNewSales()"></button>
+</div>
+<div>
+    <table>
+        <thead>
+        <tr>
+            <th></th>
+            <th>Cust No.</th>
+            <th>Name</th>
+            <th>Nickname</th>
+            <th>Mobile</th>
+            <th>Item</th>
+            <th>Specs</th>
+            <th>Address</th>
+            <th>Region</th>
+            <th>Quantity</th>
+            <th>Sell </th>
+            <th>Paid </th>
+            <th>Cost </th>
+            <th>Channel </th>
+            <th>Payout </th>
+            <th>Notes </th>
+            <th>Tracking </th>
+            <th>Status </th>
+            <th>Eta </th>
+        </tr>
+        </thead>
+        <tbody>
+        <ng-container *ngFor="let s of sales; let i = index">
+        
+        <tr *ngFor="let i of s.Items; let x = index;">
+        <td *ngIf="x == 0" [attr.rowspan]="s.Items.length" style="width: 2rem;"><button type="button" pButton label="" (click)="updateSales(s)" icon="pi pi-user-edit" style="width: 2rem"></button></td>
+        <td *ngIf="x == 0" [attr.rowspan]="s.Items.length">{{ s.CustNo }}</td>
+        <td *ngIf="x == 0" [attr.rowspan]="s.Items.length">{{ s.CustName }}</td>
+        <td *ngIf="x == 0" [attr.rowspan]="s.Items.length">{{ s.Nickname }}</td>
+        <td *ngIf="x == 0" [attr.rowspan]="s.Items.length">{{ s.Mobile }}</td>
+        <td>{{i.Item}}</td>
+        <td>{{i.Specs}}</td>
+        <td>{{i.Address}}</td>
+        <td>{{i.Region}}</td>
+        <td>{{i.Quantity}}</td>
+        <td>{{i.Sell | currency: 'USD'}}</td>
+        <td>{{i.Paid | currency: 'USD'}}</td>
+        <td>{{i.Cost | currency: 'USD'}}</td>
+        <td>{{i.Channel}}</td>
+        <td>{{i.Payout}}</td>
+        <td>{{i.Notes}}</td>
+        <td>{{i.Tracking}}</td>
+        <td>{{i.Status}}</td>
+        <td>{{i.Eta}}</td>
+    </tr>
+    </ng-container>
+        </tbody>                
+    </table>
+</div>
+<!-- <div class="card">
+    <p-table [value]="sales" dataKey="CustNo" [scrollable]="true" scrollHeight="200px" [style]="{width:'1150px'}" styleClass="p-datatable-sm p-datatable-gridlines">
+        <ng-template pTemplate="header">
+            <tr>
+                <th style="width: 50px;"></th>
+                <th style="width: 100px" pSortableColumn="CustNo">CN<p-sortIcon field="CustNo"></p-sortIcon></th>
+                <th style="width: 500px;" pSortableColumn="CustName">Name<p-sortIcon field="CustName"></p-sortIcon></th>
+                <th style="width: 200px;" pSortableColumn="Nickname">Nickname<p-sortIcon field="Nickname"></p-sortIcon></th>
+                <th style="width: 100px;" pSortableColumn="Mobile">Mobile<p-sortIcon field="Mobile"></p-sortIcon></th>
+                <th style="width: 67px;"></th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-sales let-expanded="expanded">
+            <tr>
+                <td style="width: 50px;">
+                    <button type="button" pButton pRipple [pRowToggler]="sales" class="p-button-text p-button-rounded p-button-plain" [icon]="expanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right'"></button>
+                </td>
+                <td style="width: 100px;">{{sales.CustNo}}</td>
+                <td style="width: 500px;">{{sales.CustName}}</td>
+                <td style="width: 200px;">{{sales.Nickname}}</td>
+                <td style="width: 100px;">{{sales.Mobile}}</td>
+                <td style="width: 50px;"><button type="button" pButton label="" (click)="updateSales(sales)" icon="pi pi-user-edit" style="width: 2rem"></button></td>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="rowexpansion" let-sales>
+            <tr>
+                <td colspan="7">
+                    <div class="p-p-3">
+                        <p-table [value]="sales.Items" dataKey="CustNo" [scrollable]="true" scrollHeight="200px" [style]="{width:'1050px'}" styleClass="p-datatable-sm p-datatable-gridlines">
+                            <ng-template pTemplate="header">
+                                <tr>
+                                    <th pSortableColumn="CustNo">CN </th>
+                                    <th pSortableColumn="OrderDate">Date </th>
+                                    <th pSortableColumn="Item">Item </th>
+                                    <th pSortableColumn="Specs">Specs </th>
+                                    <th pSortableColumn="Quantity">Quantity </th>
+                                    <th pSortableColumn="Sell">Sell </th>
+                                    <th pSortableColumn="Paid">Paid </th>
+                                    <th pSortableColumn="Cost">Cost </th>
+                                    <th pSortableColumn="Channel">Channel </th>
+                                    <th pSortableColumn="Payout">Payout </th>
+                                    <th pSortableColumn="Notes">Notes </th>
+                                    <th pSortableColumn="Tracking">Tracking </th>
+                                    <th pSortableColumn="Status">Status </th>
+                                    <th pSortableColumn="Eta">Eta </th>
+                                </tr>
+                            </ng-template>
+                            <ng-template pTemplate="body" let-sales>
+                                <tr>
+                                    <td>{{sales.CustNo}}</td>
+                                    <td>{{sales.OrderDate | date:'shortDate'}}</td>
+                                    <td>{{sales.Item}}</td>
+                                    <td>{{sales.Specs}}</td>
+                                    <td>{{sales.Quantity}}</td>
+                                    <td>{{sales.Sell | currency: 'USD'}}</td>
+                                    <td>{{sales.Paid | currency: 'USD'}}</td>
+                                    <td>{{sales.Cost | currency: 'USD'}}</td>
+                                    <td>{{sales.Channel}}</td>
+                                    <td>{{sales.Payout}}</td>
+                                    <td>{{sales.Notes}}</td>
+                                    <td>{{sales.Tracking}}</td>
+                                    <td>{{sales.Status}}</td>
+                                    <td>{{sales.Eta}}</td>
+                                </tr>
+                            </ng-template>
+                            <ng-template pTemplate="emptymessage">
+                                <tr>
+                                    <td colspan="6">There are no order for this product yet.</td>
+                                </tr>
+                            </ng-template>
+                        </p-table>
+                    </div>
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
+</div> -->

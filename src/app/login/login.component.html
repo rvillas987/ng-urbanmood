@@ -1,0 +1,13 @@
+<span class="p-float-label" style="margin-top: 20px;">
+    <input id="userid" type="text" (keyup)="getId($event.target.value)"
+        aria-describedby="username-help" pInputText style="width: 300px;">
+    <label for="userid">Username</label>
+        <small id="username-help" class="p-invalid" *ngIf="err_u"> - Unrecognized User ID.</small> 
+</span>
+<span class="p-float-label" style="margin-top: 30px; margin-bottom: 30px;">
+    <input id="password" type="password" (keyup)="getPass($event.target.value)" 
+        aria-describedby="password-help" pInputText style="width: 300px;">
+    <label for="password">Password</label>
+    <small id="password-help" class="p-invalid" *ngIf="err_p"> - Wrong password.</small> 
+</span>
+<button type="button" pButton label="Login" style="width: 300px;" (click)="login()"></button>

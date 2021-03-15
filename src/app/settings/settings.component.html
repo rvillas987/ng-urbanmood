@@ -1,0 +1,32 @@
+<p-accordion>
+    <p-accordionTab header="Channel">
+        <input #channel type="text" pInputText (keyup)="ChKeyUp($event)" class="p-inputtext-sm" placeholder="New Channel">
+        <button type="button" pButton label="" (click)="AddChannel(); channel.value=''" icon="pi pi-plus" style="width: 50px; height: 35px; margin-left: 10px;"></button>
+        <div style="width: 300px; margin-top: 10px;">
+            <p-table [value]="channels">
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th style="visibility: hidden; width: 0px;">Index</th>
+                        <th>Channel List</th>
+                        <th style="width: 80px;"></th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-ch>
+                    <tr>
+                        <td style="visibility: hidden; width: 0px;">{{ch.ChIndex}}</td>
+                        <td>{{ch.Channel}}</td>
+                        <td>
+                            <button type="button" pButton label="" (click)="DeleteChannel(ch)" icon="pi pi-trash" style="width: 100%;"></button>
+                        </td>
+                    </tr>
+                </ng-template>
+            </p-table>
+        </div>
+    </p-accordionTab>
+    <p-accordionTab header="Header 2">
+        Content 2
+    </p-accordionTab>
+    <p-accordionTab header="Header 3">
+        Content 3    
+    </p-accordionTab>
+</p-accordion>
